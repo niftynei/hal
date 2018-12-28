@@ -6,6 +6,7 @@ extern crate log;
 extern crate clap;
 extern crate fern;
 extern crate hex;
+extern crate base64;
 extern crate secp256k1;
 extern crate serde_json;
 
@@ -52,6 +53,7 @@ fn main() {
 		.subcommand(cmd::address::subcommand())
 		.subcommand(cmd::ln::subcommand())
 		.subcommand(cmd::tx::subcommand())
+		.subcommand(cmd::psbt::subcommand())
 		.subcommand(cmd::script::subcommand())
 		.subcommand(cmd::bip32::subcommand())
 		.arg(
@@ -74,6 +76,7 @@ fn main() {
 		("address", Some(ref m)) => cmd::address::execute(&m),
 		("bip32", Some(ref m)) => cmd::bip32::execute(&m),
 		("ln", Some(ref m)) => cmd::ln::execute(&m),
+		("psbt", Some(ref m)) => cmd::psbt::execute(&m),
 		("script", Some(ref m)) => cmd::script::execute(&m),
 		("tx", Some(ref m)) => cmd::tx::execute(&m),
 		(c, _) => println!("command {} unknown", c),
